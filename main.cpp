@@ -78,7 +78,7 @@ private:
         return intersects;
     }
 
-    std::pair<uint8_t, std::chrono::microseconds> optimal_thread_to_insert(Request &req) {
+    std::pair<uint8_t, std::chrono::microseconds> optimal_thread_to_insert_and_delay_if_indeed(Request &req) {
 
         std::chrono::steady_clock::time_point now = std::chrono::steady_clock::now();
         std::vector<std::chrono::steady_clock::time_point> best_times;
@@ -188,7 +188,7 @@ public:
         auto latency = request.timeSlot.latency;
         //calculating best place to put request
         std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
-        std::pair<uint8_t, std::chrono::microseconds> optimal_thread_and_time_to_wait = optimal_thread_to_insert(
+        std::pair<uint8_t, std::chrono::microseconds> optimal_thread_and_time_to_wait = optimal_thread_to_insert_and_delay_if_indeed(
                 request);
 
 
